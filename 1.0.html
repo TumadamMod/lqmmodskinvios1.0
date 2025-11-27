@@ -1,267 +1,369 @@
-<!doctype html>
-<html lang="vi">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Unlock Skin 3.0</title>
-  <style>
-    :root{
-      --blue:#2d8cff;
-      --bg:#f6f7f9;
-      --muted:#6b7280;
-      --card:#fff;
-      --text:#0b1220;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:-apple-system, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-
-    /* Top appbar */
-    .appbar{position:sticky;top:0;background:#fff;border-bottom:1px solid #e9e9e9;z-index:40;backdrop-filter: blur(6px)}
-    .appbar-inner{max-width:980px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
-    .appstore-icon{height:22px;opacity:.96}
-    .appbar-title{font-weight:700;font-size:18px}
-
-    /* Container */
-    .container{max-width:980px;margin:0 auto;padding:16px 16px 90px}
-
-    /* Hero section: icon + info */
-    .hero{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
-    .app-icon-wrap{width:92px;height:92px;border-radius:22px;background:var(--card);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(12,24,48,0.06)}
-    .app-icon{width:86px;height:86px;border-radius:18px;object-fit:cover}
-    .hero-right{flex:1}
-    .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .title{font-size:22px;margin:0;font-weight:800}
-    .badge{background:#efefef;padding:4px 8px;border-radius:8px;font-size:12px;font-weight:700;color:#333}
-    .developer{color:var(--muted);margin:6px 0;font-weight:600}
-    .meta{color:var(--muted);margin-bottom:12px}
-
-    /* Buttons */
-    .actions{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:10px 18px;border-radius:22px;font-weight:800;text-align:center}
-    .btn.primary{background:var(--blue);color:#fff;box-shadow:0 6px 18px rgba(45,140,255,0.18)}
-    .btn.ghost{background:transparent;border:2px solid rgba(45,140,255,0.12);color:var(--blue)}
-
-    /* Section headings */
-    .section{background:transparent;padding:18px 0;border-top:1px solid #ececec}
-    .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .section-head h2{margin:0;font-size:18px;color:var(--text);font-weight:800}
-    .platforms a{margin-left:12px;color:var(--blue);font-weight:700}
-
-    /* Screenshot list (horizontal scroll) */
-    .screenshot-list{display:flex;gap:14px;overflow-x:auto;padding:10px 2px 20px 2px;list-style:none;margin:0;-webkit-overflow-scrolling:touch}
-    .screenshot-list li{flex:0 0 auto;width:82%;max-width:640px}
-    .screenshot-list img{width:100%;height:auto;border-radius:16px;box-shadow:0 14px 36px rgba(14,22,40,0.12);display:block;object-fit:cover}
-
-    /* Big blue gallery heading with shadow */
-    .gallery-heading{
-      font-size:30px;
-      line-height:1.04;
-      text-align:center;
-      color:var(--blue);
-      font-weight:900;
-      margin:22px 0 12px;
-      text-shadow: 0 8px 0 rgba(0,0,0,0.03), 0 12px 22px rgba(45,140,255,0.12);
-      padding:0 8px;
-    }
-
-    /* Horizontal gallery (swipe) - instruction screenshots */
-    .gallery-scroll{display:flex;gap:12px;overflow-x:auto;padding:12px 6px 20px 6px;-webkit-overflow-scrolling:touch}
-.gallery-scroll img{
-  flex:0 0 82%;
-  max-height:420px;         /* Giới hạn chiều cao ảnh */
-  width:auto;
-  border-radius:14px;
-  box-shadow:0 16px 40px rgba(10,20,40,0.12);
-  object-fit:contain;       /* Hiển thị đủ ảnh, không crop */
-  background:#fff;          /* nền trắng nếu ảnh nhỏ hơn khung */
-}
-
-
-    /* Whats new / demo image */
-    .whats-new{padding:6px 0 0 0}
-    .whats-new-title{font-weight:800;text-align:center;color:#203040;margin:8px 0 12px}
-    .demo-image{width:100%;border-radius:12px;border:1px solid #eee;box-shadow:0 12px 32px rgba(8,18,36,0.08);display:block}
-
-    /* Text blocks */
-    .lead-text{color:var(--muted);line-height:1.6}
-    .muted-list{margin:8px 0 0 0;color:var(--muted);line-height:1.6}
-
-    /* Footer */
-    .footer{padding:20px 0;text-align:center;color:var(--muted);font-weight:600}
-    .footer a{color:#ff6a00;text-decoration:none;font-weight:800}
-
-    /* Small screens tweaks */
-    @media (max-width:420px){
-      .title{font-size:20px}
-      .gallery-heading{font-size:26px}
-      .screenshot-list li{width:86%}
-      .gallery-scroll img{flex:0 0 86%}
-    }
-
-    /* Desktop */
-    @media (min-width:900px){
-      .container{padding:28px}
-      .hero{align-items:center}
-      .screenshot-list li{width:33%}
-      .gallery-scroll img{flex:0 0 32%}
-      .gallery-heading{font-size:36px}
-    }
-
-    /* subtle iphone-style rounded bottom toolbar space */
-    .bottom-space{height:72px}
-    /* Loading spinner khi bấm nút */
-.btn.loading {
-  position: relative;
-  pointer-events: none;
-  opacity: 0.8;
-}
-/* Hiệu ứng lắc khi loading */
-@keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-3px); }
-  40% { transform: translateX(3px); }
-  60% { transform: translateX(-3px); }
-  80% { transform: translateX(3px); }
-  100% { transform: translateX(0); }
-}
-
-.btn.loading {
-  animation: shake 0.5s infinite;
-}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Tumadam Mod</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        
+        .shimmer {
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animate-rainbow {
+            animation: rainbow 3s ease infinite;
+            background-size: 200% 200%;
+        }
+        
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+    </style>
 </head>
-<body>
-  <header class="appbar">
-    <div class="appbar-inner">
-      <!-- icon app store -->
-      <img class="appstore-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/1024px-App_Store_%28iOS%29.svg.png" alt="App Store">
-      <span class="appbar-title">App Store</span>
+<body class="bg-black">
+<div class="min-h-screen bg-black" style="padding-top: env(safe-area-inset-top);">
+    <!-- Navigation Bar -->
+    <nav class="border-b border-white/10 bg-gradient-to-br from-[#010101] via-[#090909] to-[#010101] sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-8">
+                    <!-- Logo with typing effect -->
+                    <a href="/" class="group flex items-center gap-3 no-underline">
+                        <!-- Logo Icon -->
+                        <img src="https://i.imgur.com/Wh12mVJ.jpeg" alt="tumadam.io.vn" class="w-10 h-10 shrink-0 rounded-lg">
+                        
+                        <!-- Text with typing effect -->
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-white font-black text-xl">
+                                Tumadam MOD
+                            </span>
+                            
+                            <!-- Expanded Text "IPA Library" on hover -->
+                            <span class="origin-left inline-flex duration-300 opacity-0 group-hover:opacity-100 transform scale-x-0 group-hover:scale-x-100 transition-all text-gray-400 font-medium text-sm whitespace-nowrap">
+                            </span>
+                        </div>
+                    </a>
+                    
+                    <!-- Social Group Links -->
+                    <div class="flex items-center gap-2 sm:ml-0">
+ <!-- Zalo Group Button -->
+                        <a href="https://discord.gg/a8SX3r9bTK" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="group relative animate-rainbow cursor-pointer border-0 bg-[linear-gradient(#121213,#121213),linear-gradient(#121213_50%,rgba(18,18,19,0.6)_80%,rgba(18,18,19,0)),linear-gradient(90deg,hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%))] bg-[length:200%] [background-clip:padding-box,border-box,border-box] [background-origin:border-box] [border:calc(0.08*1rem)_solid_transparent] before:absolute before:bottom-[-20%] before:left-1/2 before:z-0 before:h-[20%] before:w-[60%] before:-translate-x-1/2 before:animate-rainbow before:bg-[linear-gradient(90deg,hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%))] before:[filter:blur(calc(0.8*1rem))] hover:scale-105 active:scale-95 h-8 px-3 py-1.5 inline-flex items-center justify-center rounded-md text-xs font-medium transition-transform duration-200 whitespace-nowrap"
+                           title="Tham gia nhóm Zalo">
+                            <img src="https://img.icons8.com/fluency/48/discord.png" alt="discord" class="w-4 h-4"/>
+                            <span class="ml-1.5 text-white font-medium">Group Discord</span>
+                        </a>
+                        
+ <!-- Telegram Channel Button -->
+                        <a href="https://t.me/tumadammod" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="group relative animate-rainbow cursor-pointer border-0 bg-[linear-gradient(#121213,#121213),linear-gradient(#121213_50%,rgba(18,18,19,0.6)_80%,rgba(18,18,19,0)),linear-gradient(90deg,hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%))] bg-[length:200%] [background-clip:padding-box,border-box,border-box] [background-origin:border-box] [border:calc(0.08*1rem)_solid_transparent] before:absolute before:bottom-[-20%] before:left-1/2 before:z-0 before:h-[20%] before:w-[60%] before:-translate-x-1/2 before:animate-rainbow before:bg-[linear-gradient(90deg,hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%))] before:[filter:blur(calc(0.8*1rem))] hover:scale-105 active:scale-95 h-8 px-3 py-1.5 inline-flex items-center justify-center rounded-md text-xs font-medium transition-transform duration-200 whitespace-nowrap"
+                           title="Theo dõi kênh Telegram">
+                            <img src="https://img.icons8.com/fluency/48/telegram-app.png" alt="telegram" class="w-4 h-4 opacity-90"/>
+                            <span class="ml-1.5 text-white font-medium">Kênh Telegram</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        
+<input type="hidden" name="csrfmiddlewaretoken" value="Cp74OLPNoirkVHpnms7EbPTqaF24v7ZFsfccHLfy3Y5zwjjJ7Ura7ppzDXfuOZZc">
+<div class="max-w-7xl mx-auto">
+    <!-- Back Button -->
+    <a href="/" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-gradient-to-br from-black/60 to-black/40 hover:bg-white/10 transition-all duration-300 transform hover:scale-105 active:scale-95 mb-6 group text-sm no-underline text-white">
+        <i class="fas fa-arrow-left text-blue-400 transform transition-transform duration-300 group-hover:-translate-x-1"></i>
+        <span class="font-semibold">Quay lại</span>
+    </a>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <!-- Left Column: App Info Card -->
+        <div class="lg:col-span-2">
+            <!-- Single Unified App Card -->
+            <div class="rounded-3xl border border-white/10 bg-gradient-to-br from-[#010101] via-[#090909] to-[#010101] overflow-hidden shadow-2xl">
+                <div class="p-6 sm:p-8">
+                    <!-- App Header -->
+                    <div class="pb-6 border-b border-white/10">
+                        <div class="flex flex-col lg:flex-row items-start gap-4 mb-4">
+                            <!-- Left: Icon + Title + Badges + Meta -->
+                            <div class="flex-1 w-full lg:w-auto">
+                                <div class="flex items-start gap-4 mb-4">
+                                    <!-- App Icon -->
+                                    
+                                    <img src="https://play-lh.googleusercontent.com/u-HxG-Q1fEpAL9w96iIEaBR0iQOY8yeqDuDvhUTr_J98nfOuAAa7S0B0nkAc0ROnnh555Qp2XYBqbN2FsvyN6p4=w480-h960" alt="Aovcheat" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl shadow-xl object-cover flex-shrink-0 border border-white/20">
+                                    
+                                    
+                                    <!-- Title & Description -->
+                                    <div class="flex-1 min-w-0">
+                                        <h1 class="text-2xl sm:text-4xl font-bold text-white leading-tight mb-2">Aov Mod Skin  4.0</h1>
+                                        <p class="text-sm text-gray-400"></p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Badges Row -->
+                                <div class="flex flex-wrap gap-3 items-center text-sm mb-3">
+                                    <span class="font-semibold text-blue-400">
+                                        Direc Link Install
+                                    </span>
+                                    
+                                    <span class="text-gray-400">
+                                        • v1.60.11505108
+                                    </span>
+                                    
+                                    
+                                    <span class="text-gray-400">
+                                        • 193.10 MB
+                                    </span>
+                                    
+                                </div>
+                                
+                                <!-- Meta info -->
+                                <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-400">
+                                    <span class="flex items-center gap-1.5">
+                                        <i class="fas fa-download text-green-400"></i>
+                                        /? lượt tải
+                                    </span>
+                                    <span class="flex items-center gap-1.5">
+                                        <i class="fas fa-clock text-purple-400"></i>
+                                        28/10/2025
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- Preview Images -->
+<!-- Preview Slider -->
+<div class="mt-5">
+    <h3 class="text-white font-semibold mb-3"> Preview</h3>
+
+    <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
+        
+        <!-- Ảnh 1 -->
+        <div class="snap-center shrink-0">
+            <img src="https://raw.githubusercontent.com/TumadamMod/getkey.php/refs/heads/main/IMG_2382.png"
+                 class="w-64 h-40 object-cover rounded-xl border border-white/10 hover:border-pink-500/40 transition-all duration-300 hover:scale-[1.03]"
+                 alt="preview 1">
+        </div>
+
+        <!-- Ảnh 2 -->
+        <div class="snap-center shrink-0">
+            <img src="https://raw.githubusercontent.com/TumadamMod/getkey.php/refs/heads/main/IMG_2383.png"
+                 class="w-64 h-40 object-cover rounded-xl border border-white/10 hover:border-pink-500/40 transition-all duration-300 hover:scale-[1.03]"
+                 alt="preview 2">
+        </div>
+
     </div>
-  </header>
+</div>
+                            
+                            <!-- Right: Download Button (Desktop only, hidden on mobile) -->
+                            <div class="hidden lg:flex flex-shrink-0 items-start">
+                                
+                                <a href="itms-services://?action=download-manifest&url=https://tumadammod.github.io/autoup/manifest-1764283974931.plist" 
+                                   class="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none no-underline">
+                                    <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"></span>
+                                    <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
+                                        Cài Đặt
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Download Button (Mobile only, below bundle ID) -->
+                    <div class="lg:hidden py-6 border-b border-white/10">
+                        <div class="flex justify-center">
+                            
+                            <a href="itms-services://?action=download-manifest&url=https://tumadammod.github.io/autoup/manifest-1764283974931.plist" 
+                               class="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none no-underline">
+                                <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"></span>
+                                <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
+                                    Cài Đặt
+                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"></path>
+                                    </svg>
+                                </span>
+                            </a>
+                            
+                        </div>
+                    </div>                    <!-- Features Checklist -->
+                     <!-- GET KEY FREE (BELOW) -->
+    <div class="p-5 rounded-xl bg-black/40 border border-white/10 hover:border-pink-500/40 hover:bg-black/50 transition-all duration-300">
+        <h3 class="text-lg font-semibold text-pink-400 mb-2">Get Key Free</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Nhận key miễn phí mỗi <b class="text-green-400">1.5 ngày (36 giờ)</b>.  
+            Hết hạn có thể get lại ngay – không giới hạn.
+        </p>
 
-  <main class="container">
-    <!-- Noti -->
-    <section class="hero" aria-label="Thông tin ứng dụng">
-      <div class="app-icon-wrap">
-        <!-- Icon app -->
-        <img class="app-icon" src="https://play-lh.googleusercontent.com/u-HxG-Q1fEpAL9w96iIEaBR0iQOY8yeqDuDvhUTr_J98nfOuAAa7S0B0nkAc0ROnnh555Qp2XYBqbN2FsvyN6p4=w480-h960" alt="Icon">
-      </div>
+        <a href="https://tumadam.io.vn/getkeyaovcheat/"
+           target="_blank"
+           class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-pink-600 hover:bg-pink-700 font-medium text-white text-sm transition">
+            <i class="fa-solid fa-gift"></i>
+            Nhận Key Free
+        </a>
+    </div>
 
-      <div class="hero-right">
-        <div class="title-row">
-          <h1 class="title">Unlock Skin 3.0</h1>
-          <div class="badge"></div>
+    <!-- Notice box -->
+    <div class="mt-6 p-4 rounded-xl bg-black/30 border border-white/10">
+        <h4 class="text-white font-semibold mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-circle-info text-blue-400"></i>
+            Lưu Ý Quan Trọng
+        </h4>
+
+        <ul class="text-gray-400 text-sm space-y-2">
+            <li>✔ Key Free có thời gian sử dụng <b class="text-green-400">1.5 ngày (36 giờ)</b></li>
+            <li>✔ Hết hạn <b class="text-yellow-400">Get lại key mới</b>, không giới hạn</li>
+            <li>✔ Nếu Lười Vượt Link Có Thể Mua Key.</li>
+                        <li>✔ Vượt Link Chỉ 1 Lần.</li>
+        </ul>
+    </div>
+    <!-- KEY SECTION -->
+<div class="mt-6 rounded-2xl border border-white/10 bg-gradient-to-br from-[#0a0a0a] via-[#111] to-[#0a0a0a] p-6 shadow-xl">
+
+    <!-- Title -->
+    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-key text-yellow-400"></i>
+        Mua Key
+    </h2>
+
+    <!-- BUY KEY (ON TOP) -->
+    <div class="p-5 rounded-xl bg-black/40 border border-white/10 hover:border-blue-500/40 hover:bg-black/50 transition-all duration-300 mb-5">
+        <h3 class="text-lg font-semibold text-blue-400 mb-2">Mua Key </h3>
+        <p class="text-gray-400 text-sm mb-4">Dành Cho Dân Lười Vượt Link.</p>
+
+        <!-- Price table -->
+        <div class="space-y-2 mb-4">
+            <div class="flex justify-between text-sm text-gray-300">
+                <span>• 1 Ngày</span> <span class="text-green-400 font-semibold">5.000đ</span>
+            </div>
+            <div class="flex justify-between text-sm text-gray-300">
+                <span>• 7 Ngày</span> <span class="text-green-400 font-semibold">15.000đ</span>
+            </div>
+            <div class="flex justify-between text-sm text-gray-300">
+                <span>• 1 Tháng</span> <span class="text-green-400 font-semibold">50.000đ</span>
+            </div>
         </div>
 
-        <div class="developer"></div>
-        <div class="meta"><span>Miễn phí</span> · <span>23/11/2025</span></div>
+        <a href="https://t.me/tumadam2507"
+           target="_blank"
+           class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 font-medium text-white text-sm transition">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Liên hệ mua key
+        </a>
+    </div>
 
-        <div class="actions">
-          <!-- Link button -->
-          <a class="btn primary" href="https://tinyurl.com/2p5vj64r">Cài Đặt</a>
-                    <a class="btn primary" href="https://tumadam.io.vn/getkeyunlockskinv3/">Get Key Free</a>
+</div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-gradient-to-br from-[#010101] via-[#090909] to-[#010101] mt-auto">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Quick Links -->
+                <div class="text-center md:text-left">
+                    <h4 class="text-sm font-semibold text-white mb-4">
+                        Liên kết nhanh
+                    </h4>
+                    <ul class="space-y-3 flex flex-col items-center md:items-start">
+                        <li>
+                            <a href="/" class="text-gray-400 hover:text-blue-400 transition-colors no-underline text-sm">
+                                Trang chủ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/installation-guide/" class="text-gray-400 hover:text-blue-400 transition-colors no-underline text-sm">
+                                Hướng dẫn cài đặt
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/faq/" class="text-gray-400 hover:text-blue-400 transition-colors no-underline text-sm">
+                                Câu hỏi thường gặp
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div class="text-center md:text-left">
+                    <h4 class="text-sm font-semibold text-white mb-4">
+                        Liên hệ
+                    </h4>
+                    <ul class="flex flex-wrap gap-6 justify-center md:justify-start">
+                        <li>
+                            <a href="https://t.me/anhvu99er" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors no-underline flex items-center gap-2 text-sm">
+                                <img src="https://img.icons8.com/fluency/16/telegram-app.png" alt="telegram"/>
+                                Telegram
+                            </a>
+                        </li>
+<li>
+    <a href="https://youtube.com/@tumadamlengend" target="_blank" class="text-gray-400 hover:text-red-500 transition-colors no-underline flex items-center gap-2 text-sm">
+        <img src="https://img.icons8.com/?size=16&id=19318&format=png&color=000000" alt="youtube" class="w-4 h-4"/>
+        YouTube
+    </a>
+</li>
+<li>
+    <a href="https://www.facebook.com/truong.van.man.15586/" target="_blank" class="text-gray-400 hover:text-blue-600 transition-colors no-underline flex items-center gap-2 text-sm">
+        <img src="https://img.icons8.com/fluency/16/facebook-new.png" alt="facebook" class="w-4 h-4"/>
+        Facebook
+    </a>
+</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-8 pt-6 text-center">
+                <p class="text-sm text-gray-400">© 2025 Tumadam Mod</p>
+            </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Review -->
-    <section class="section screenshots" aria-label="Screenshot">
-      <div class="section-head">
-        <h2>Xem Trước</h2>
-        <div class="platforms"><a class="active">iPhone</a> <a></a></div>
-      </div>
-
-      <ul class="screenshot-list" role="list">
-        <!-- Ảnh Review -->
-        <li><img src="https://raw.githubusercontent.com/TumadamMod/autoup/refs/heads/main/IMG_2053.png" alt="screenshot 1"></li>
-        <li><img src="https://raw.githubusercontent.com/TumadamMod/autoup/refs/heads/main/IMG_2054.png" alt="screenshot 2"></li>
-      </ul>
-    </section>
-    <!-- Tin cậy -->
-    <section class="section gallery-instructions">
-      <div class="gallery-heading">Hướng Dẫn Tin Cậy</div>
-
-      <div class="gallery-scroll" aria-hidden="false">
-        <!-- tin cậy -->
-        <img src="https://i.imgur.com/56TqnFh.png" alt="Hướng dẫn 1">
-        <img src="https://i.imgur.com/ZiXN2n7.png" alt="Hướng dẫn 2">
-        <img src="https://i.imgur.com/5KIIyuG.png" alt="Hướng dẫn 3">
-      </div>
-    </section>
-
-<!-- cách dùng -->
-<section class="section whats-new">
-  <h3 class="whats-new-title">Hướng Dẫn Sử Dụng</h3>
-  
-  <!-- Video YouTube -->
-  <div class="video-wrapper">
-    <iframe 
-      width="100%" 
-      height="315" 
-      src="https://www.youtube.com/embed/INdj-NICN44" 
-      title="YouTube video player" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <p class="lead-text muted-list">
-    Phiên bản 1.60.1.6<br>
-    Fix Ban Vặt,Cập Nhật Menu Mới,Thêm Lưu Chức Năng Khi Thoát Game Vô Lại,Sửa Lỗi Nút Qi Milim+Iggy Rimuru Không Hiện.<br>
-  </p>
-</section>
-
-
-    <!-- PRIVACY & INFO -->
-    <section class="section">
-      <h2>Quyền Riêng Tư Của Ứng Dụng</h2>
-      <p class="lead-text">Nhà phát triển, <strong>Tumadam Mod</strong>, đã cho biết rằng app mod này thật sự rất thú vị và tôi rất thích nó.</p>
-
-      <h3 style="margin-top:18px;font-weight:800">Thông Tin</h3>
-      <p class="muted-list"><strong>Nhà cung cấp</strong><br>Trương Văn Mẫn</p>
-      <p class="muted-list"><strong>Kích cỡ</strong><br>180MB</p>
-      <p class="muted-list"><strong>Danh mục</strong><br>Trò chơi</p>
-    </section>
-
-    <footer class="footer">
-      <p>© 2025 <a href="tumadam.io.vn">Tumadam Mod</a>. All rights reserved.</p>
     </footer>
 
-    <div class="bottom-space" aria-hidden="true"></div>
-  </main>
-
-  <script>
-    document.querySelectorAll('.platforms a').forEach((el, i) => {
-      el.addEventListener('click', function(e){
-        e.preventDefault();
-        document.querySelectorAll('.platforms a').forEach(a => a.style.opacity=0.6);
-        el.style.opacity = 1;
-      });
-    });
-    
-    document.querySelectorAll('.screenshot-list, .gallery-scroll').forEach(el=>{
-      el.style.scrollSnapType = 'x mandatory';
-      Array.from(el.querySelectorAll('img, li')).forEach(item=>{
-        item.style.scrollSnapAlign = 'center';
-      });
-    });
-    <script>
-  const installBtn = document.querySelector('.btn.primary');
-
-  installBtn.addEventListener('click', function(e){
-    e.preventDefault(); // chặn bấm trực tiếp
-
-    installBtn.textContent = "Đang cài đặt...";
-    installBtn.classList.add("loading");
-
-    // sau 2s chuyển trang
-    setTimeout(() => {
-      window.location.href = installBtn.href;
-    }, 2000);
-  });
-</script>
-  </script>
+</div>
 </body>
 </html>
