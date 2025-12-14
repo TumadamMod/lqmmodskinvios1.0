@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Tumadam Mod</title>
+    <title>AovModSkin5.0</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
@@ -142,14 +142,13 @@
                                     
                                     <!-- Title & Description -->
                                     <div class="flex-1 min-w-0">
-                                        <h1 class="text-2xl sm:text-4xl font-bold text-white leading-tight mb-2">Aov Mod Skin  4.0</h1>
+                                        <h1 class="text-2xl sm:text-4xl font-bold text-white leading-tight mb-2">Aov Mod Skin 5.0</h1>
                                         
 <a href="https://youtu.be/VWOtF3QTdqA?si=m-ro_CYX5_cyDt0P"
    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-all duration-300 mt-2 no-underline">
     <i class="fa-solid fa-video"></i>
     Hướng Dẫn Dùng
 </a>
-
                                         <p class="text-sm text-gray-400"></p>
                                     </div>
                                 </div>
@@ -174,20 +173,23 @@
                                 <!-- Meta info -->
                                 <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-400">
                                 
+                                    <span class="flex items-center gap-1.5">
 <span class="flex items-center gap-1.5">
   <i class="fas fa-download text-green-400"></i>
   <span id="download-count">0</span> lượt tải
 </span>
                                     <span class="flex items-center gap-1.5">
                                         <i class="fas fa-clock text-purple-400"></i>
-                                        28/10/2025
+                                        14/12/2025
                                     </span>
                                 </div>
                             </div>
-                                                        <!-- Right: Download Button (Desktop only, hidden on mobile) -->
+                            <!-- Preview Images -->
+                            
+                            <!-- Right: Download Button (Desktop only, hidden on mobile) -->
                             <div class="hidden lg:flex flex-shrink-0 items-start">
                                 
-                                <a id="install-btn-desktop" href="itms-services://?action=download-manifest&url=https://tumadammod.github.io/autoup/manifest-1764283974931.plist" 
+                                <a id="install-btn-desktop" href="itms-services://?action=download-manifest&url=https://tumadam.io.vn/lqmmodskinvios1.0/manifest.plist" 
                                    class="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none no-underline">
                                     <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"></span>
                                     <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
@@ -206,7 +208,7 @@
                     <div class="lg:hidden py-6 border-b border-white/10">
                         <div class="flex justify-center">
                             
-                            <a id="install-btn-mobile" href="itms-services://?action=download-manifest&url=https://tumadammod.github.io/autoup/manifest-1764283974931.plist" 
+                            <a id="install-btn-mobile" href="itms-services://?action=download-manifest&url=https://tumadammod.github.io/autoup/manifest-1764283865076.plist" 
                                class="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none no-underline">
                                 <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"></span>
                                 <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
@@ -218,7 +220,7 @@
                             </a>
                             
                         </div>
-                    </div>        
+                    </div>                    <!-- Features Checklist -->
                      <!-- GET KEY FREE (BELOW) -->
     <div class="p-5 rounded-xl bg-black/40 border border-white/10 hover:border-pink-500/40 hover:bg-black/50 transition-all duration-300">
         <h3 class="text-lg font-semibold text-pink-400 mb-2">Get Key Free</h3>
@@ -350,67 +352,60 @@
 
 </div>
 <script type="module">
-  // Import Firebase SDK
+  // Import Firebase SDK từ CDN (BẮT BUỘC)
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-  import { getDatabase, ref, runTransaction } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+  import {
+    getDatabase,
+    ref,
+    runTransaction,
+    get
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
 
-  // Cấu hình Firebase Web App
+  // Firebase config (CỦA BẠN – OK)
   const firebaseConfig = {
-    apiKey: "AIzaSyCvliK4re3evoI0dPnqHa4cKFBDj0CTROY",
-    authDomain: "count-b21c9.firebaseapp.com",
-    databaseURL: "https://count-b21c9-default-rtdb.firebaseio.com",
-    projectId: "count-b21c9",
-    storageBucket: "count-b21c9.firebasestorage.app",
-    messagingSenderId: "776731106290",
-    appId: "1:776731106290:web:9fbe1a0455da0c3671296b",
-    measurementId: "G-9RYSHTW83B"
+    apiKey: "AIzaSyCwKju17qsWQH1eZkHhNAd-I4dTIDs-T8k",
+    authDomain: "demluottaiv4.firebaseapp.com",
+    databaseURL: "https://demluottaiv4-default-rtdb.firebaseio.com",
+    projectId: "demluottaiv4",
+    storageBucket: "demluottaiv4.firebasestorage.app",
+    messagingSenderId: "1043110535638",
+    appId: "1:1043110535638:web:2c0b6489dc275ee8680477",
+    measurementId: "G-6QFYN1VNX1"
   };
 
-  // Khởi tạo Firebase
+  // Init Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  getAnalytics(app);
   const db = getDatabase(app);
 
-  // Tham chiếu lượt tải trong DB
-  const countRef = ref(db, 'downloads/aovcheat');
+  // Đường dẫn DB
+  const countRef = ref(db, "downloads/aovcheat");
 
-  // Hàm tăng lượt tải
+  // 🔼 Tăng lượt tải
   function increaseDownloadCount() {
-    runTransaction(countRef, (currentValue) => {
-      return (currentValue || 0) + 1;
+    runTransaction(countRef, (current) => {
+      return (current || 0) + 1;
     }).then((result) => {
-      const newCount = result.snapshot.val();
-      console.log("Đã tăng lượt tải:", newCount);
-
-      // Cập nhật lên giao diện
-      const el = document.querySelector("#download-count");
-      if (el) el.textContent = newCount;
-    }).catch((err) => {
-      console.error("Lỗi khi tăng lượt tải:", err);
+      const el = document.getElementById("download-count");
+      if (el) el.textContent = result.snapshot.val();
     });
   }
 
-  // Gắn vào nút cài đặt (desktop + mobile)
-  const btnDesktop = document.querySelector("#install-btn-desktop");
-  const btnMobile  = document.querySelector("#install-btn-mobile");
-
-  if (btnDesktop) {
-    btnDesktop.addEventListener("click", increaseDownloadCount);
-  }
-  if (btnMobile) {
-    btnMobile.addEventListener("click", increaseDownloadCount);
-  }
-
-  // Khi load trang → chỉ LẤY số lượt tải, không tăng!
-  import { get } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
-
+  // 👀 Load lượt tải (KHÔNG tăng)
   get(countRef).then((snapshot) => {
     if (snapshot.exists()) {
-      const el = document.querySelector("#download-count");
+      const el = document.getElementById("download-count");
       if (el) el.textContent = snapshot.val();
     }
   });
+
+  // ✅ GẮN CLICK VÀO NÚT
+  document.getElementById("install-btn-desktop")
+    ?.addEventListener("click", increaseDownloadCount);
+
+  document.getElementById("install-btn-mobile")
+    ?.addEventListener("click", increaseDownloadCount);
 </script>
 </body>
 </html>
