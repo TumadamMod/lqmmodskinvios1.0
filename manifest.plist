@@ -12,19 +12,27 @@
           <key>kind</key>
           <string>software-package</string>
           <key>url</key>
-          <string>https://tumadam.io.vn/guangzhou/ESign.ipa</string>
+          <string>https://github.com/TumadamMod/lqmmodskinvios1.0/releases/download/aovmod/Modskin.ipa</string>
+        </dict>
+          <dict>
+          <key>kind</key>
+          <string>display-image</string>
+          <key>needs-shine</key>
+          <true/>
+          <key>url</key>
+          <string>https://i.imgur.com/DMCeCm8.jpeg</string>
         </dict>
       </array>
       <key>metadata</key>
       <dict>
         <key>bundle-identifier</key>
-        <string>tumadam.io.vn.guang</string>
+        <string>com.tumadam.game.kgvn004</string>
         <key>bundle-version</key>
-        <string>5.0.2</string>
+        <string>1.60.11515852</string>
         <key>kind</key>
         <string>software</string>
         <key>title</key>
-        <string>ESign</string>
+        <string>Liên Quân Mobile</string>
       </dict>
     </dict>
   </array>
