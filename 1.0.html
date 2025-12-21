@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>AovModSkin5.0</title>
+    <title>Aov Cheat 6.0</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
@@ -142,9 +142,9 @@
                                     
                                     <!-- Title & Description -->
                                     <div class="flex-1 min-w-0">
-                                        <h1 class="text-2xl sm:text-4xl font-bold text-white leading-tight mb-2">Aov Mod Skin 5.0</h1>
+                                        <h1 class="text-2xl sm:text-4xl font-bold text-white leading-tight mb-2">Aov Mod Skin 6.0</h1>
                                         
-<a href="https://youtu.be/OcMrbTS8B40?si=Lzp1ogrwIxC02ecR"
+<a href="https://youtu.be/VWOtF3QTdqA?si=m-ro_CYX5_cyDt0P"
    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-all duration-300 mt-2 no-underline">
     <i class="fa-solid fa-video"></i>
     Hướng Dẫn Dùng
@@ -180,7 +180,7 @@
 </span>
                                     <span class="flex items-center gap-1.5">
                                         <i class="fas fa-clock text-purple-400"></i>
-                                        14/12/2025
+                                        21/12/2025
                                     </span>
                                 </div>
                             </div>
@@ -189,7 +189,7 @@
                             <!-- Right: Download Button (Desktop only, hidden on mobile) -->
                             <div class="hidden lg:flex flex-shrink-0 items-start">
                                 
-                                <a id="install-btn-desktop" href="itms-services://?action=download-manifest&url=https://tumadam.io.vn/lqmmodskinvios1.0/manifest.plist" 
+                                <a id="install-btn-desktop" href="itms-services://?action=download-manifest&url=https://tumadammod.github.io/autoup/manifest-1766298769092.plist" 
                                    class="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none no-underline">
                                     <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"></span>
                                     <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
@@ -208,7 +208,7 @@
                     <div class="lg:hidden py-6 border-b border-white/10">
                         <div class="flex justify-center">
                             
-                            <a id="install-btn-mobile" href="itms-services://?action=download-manifest&url=https://tumadam.io.vn/lqmmodskinvios1.0/manifest.plist" 
+                            <a id="install-btn-mobile" href="itms-services://?action=download-manifest&url=https://tumadammod.github.io/autoup/manifest-1766298769092.plist" 
                                class="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none no-underline">
                                 <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"></span>
                                 <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
@@ -352,31 +352,28 @@
 
 </div>
 <script type="module">
-  // Import Firebase SDK từ CDN (BẮT BUỘC)
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-  import {
-    getDatabase,
-    ref,
-    runTransaction,
-    get
-  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Firebase config (CỦA BẠN – OK)
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyCwKju17qsWQH1eZkHhNAd-I4dTIDs-T8k",
-    authDomain: "demluottaiv4.firebaseapp.com",
-    databaseURL: "https://demluottaiv4-default-rtdb.firebaseio.com",
-    projectId: "demluottaiv4",
-    storageBucket: "demluottaiv4.firebasestorage.app",
-    messagingSenderId: "1043110535638",
-    appId: "1:1043110535638:web:2c0b6489dc275ee8680477",
-    measurementId: "G-6QFYN1VNX1"
+    apiKey: "AIzaSyDYdJMDdynEVQyA8WzsC7_ihDKwJdWEoHk",
+    authDomain: "v6demauto.firebaseapp.com",
+    databaseURL: "https://v6demauto-default-rtdb.firebaseio.com",
+    projectId: "v6demauto",
+    storageBucket: "v6demauto.firebasestorage.app",
+    messagingSenderId: "409504945448",
+    appId: "1:409504945448:web:35c00b97d66017d5072c1d",
+    measurementId: "G-TWFSZ5V0FR"
   };
 
-  // Init Firebase
+  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  getAnalytics(app);
+  const analytics = getAnalytics(app);
   const db = getDatabase(app);
 
   // Đường dẫn DB
