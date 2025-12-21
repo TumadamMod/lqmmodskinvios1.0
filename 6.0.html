@@ -352,14 +352,15 @@
 
 </div>
 <script type="module">
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import {
+    getDatabase,
+    ref,
+    runTransaction,
+    get
+  } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyDYdJMDdynEVQyA8WzsC7_ihDKwJdWEoHk",
     authDomain: "v6demauto.firebaseapp.com",
@@ -371,15 +372,15 @@
     measurementId: "G-TWFSZ5V0FR"
   };
 
-  // Initialize Firebase
+  // Init
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const db = getDatabase(app);
 
-  // Đường dẫn DB
+  // DB path
   const countRef = ref(db, "downloads/aovcheat");
 
-  // 🔼 Tăng lượt tải
+  // 🔼 tăng lượt tải
   function increaseDownloadCount() {
     runTransaction(countRef, (current) => {
       return (current || 0) + 1;
@@ -389,7 +390,7 @@
     });
   }
 
-  // 👀 Load lượt tải (KHÔNG tăng)
+  // 👀 load lượt tải
   get(countRef).then((snapshot) => {
     if (snapshot.exists()) {
       const el = document.getElementById("download-count");
@@ -397,7 +398,7 @@
     }
   });
 
-  // ✅ GẮN CLICK VÀO NÚT
+  // gắn click
   document.getElementById("install-btn-desktop")
     ?.addEventListener("click", increaseDownloadCount);
 
