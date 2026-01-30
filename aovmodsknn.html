@@ -1,164 +1,280 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>AovMod</title>
-  <style>
-    :root{
-      --blue:#2d8cff;
-      --bg:#f6f7f9;
-      --muted:#6b7280;
-      --card:#fff;
-      --text:#0b1220;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aov Mod</title>
 
-    .appbar{position:sticky;top:0;background:#fff;border-bottom:1px solid #e9e9e9;z-index:40;backdrop-filter:blur(6px)}
-    .appbar-inner{max-width:980px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
-    .appstore-icon{height:22px;opacity:.96}
-    .appbar-title{font-weight:700;font-size:18px}
+<style>
+:root{
+  --blue:#2d8cff;
+  --red:#ff3b3b;
+  --bg:#f4f6f9;
+  --card:#fff;
+  --text:#0f172a;
+  --muted:#6b7280;
+}
 
-    .container{max-width:980px;margin:0 auto;padding:16px 16px 90px}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+  background:linear-gradient(180deg,#eef4ff,#f4f6f9);
+  color:var(--text);
+}
 
-    .hero{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
-    .app-icon-wrap{width:92px;height:92px;border-radius:22px;background:var(--card);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(12,24,48,0.06)}
-    .app-icon{width:86px;height:86px;border-radius:18px;object-fit:cover}
-    .hero-right{flex:1}
-    .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .title{font-size:22px;margin:0;font-weight:800}
-    .badge{background:#efefef;padding:4px 8px;border-radius:8px;font-size:12px;font-weight:700;color:#333}
-    .developer{color:var(--muted);margin:6px 0;font-weight:600}
-    .meta{color:var(--muted);margin-bottom:12px}
+.container{
+  max-width:420px;
+  margin:auto;
+  padding:28px 18px 40px;
+}
 
-    .actions{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:10px 18px;border-radius:22px;font-weight:800;text-align:center;cursor:pointer}
-    .btn.primary{background:var(--blue);color:#fff;box-shadow:0 6px 18px rgba(45,140,255,0.18)}
-    .btn.ghost{background:transparent;border:2px solid rgba(45,140,255,0.12);color:var(--blue)}
+.card{
+  background:var(--card);
+  border-radius:24px;
+  padding:24px 18px;
+  box-shadow:0 20px 50px rgba(0,0,0,.15);
+  text-align:center;
+}
 
-    .section{background:transparent;padding:18px 0;border-top:1px solid #ececec}
-    .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .section-head h2{margin:0;font-size:18px;color:var(--text);font-weight:800}
-    .platforms a{margin-left:12px;color:var(--blue);font-weight:700}
+/* App info */
+.app-icon{
+  width:96px;
+  height:96px;
+  border-radius:22px;
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
+  object-fit:cover;
+}
 
-    .screenshot-list{display:flex;gap:14px;overflow-x:auto;padding:10px 2px 20px 2px;list-style:none;margin:0;-webkit-overflow-scrolling:touch}
-    .screenshot-list li{flex:0 0 auto;width:82%;max-width:640px}
-    .screenshot-list img{width:100%;height:auto;border-radius:16px;box-shadow:0 14px 36px rgba(14,22,40,0.12);display:block;object-fit:cover}
+.app-name{
+  font-size:22px;
+  font-weight:900;
+  margin:14px 0 4px;
+}
 
-    .gallery-heading{font-size:30px;line-height:1.04;text-align:center;color:var(--blue);font-weight:900;margin:22px 0 12px;text-shadow:0 8px 0 rgba(0,0,0,0.03),0 12px 22px rgba(45,140,255,0.12);padding:0 8px}
+.app-desc{
+  color:var(--muted);
+  font-size:14px;
+}
 
-    .gallery-scroll{display:flex;gap:12px;overflow-x:auto;padding:12px 6px 20px 6px;-webkit-overflow-scrolling:touch}
-    .gallery-scroll img{flex:0 0 82%;max-height:420px;width:auto;border-radius:14px;box-shadow:0 16px 40px rgba(10,20,40,0.12);object-fit:contain;background:#fff}
+/* Install button */
+.install-btn{
+  display:block;
+  margin:20px auto 6px;
+  background:linear-gradient(135deg,#2d8cff,#59a8ff);
+  color:#fff;
+  padding:14px;
+  border-radius:30px;
+  font-weight:900;
+  text-decoration:none;
+  box-shadow:0 14px 30px rgba(45,140,255,.45);
+}
 
-    .whats-new{padding:6px 0 0 0}
-    .whats-new-title{font-weight:800;text-align:center;color:#203040;margin:8px 0 12px}
-    .demo-image{width:100%;border-radius:12px;border:1px solid #eee;box-shadow:0 12px 32px rgba(8,18,36,0.08);display:block}
+/* Key box */
+.key-box{
+  margin-top:10px;
+  padding:10px 14px;
+  border-radius:14px;
+  background:#f8fafc;
+  border:1.5px dashed rgba(45,140,255,.3);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
 
-    .lead-text{color:var(--muted);line-height:1.6}
-    .muted-list{margin:8px 0 0 0;color:var(--muted);line-height:1.6}
+.key-text{
+  font-size:13px;
+  text-align:left;
+}
 
-    .footer{padding:20px 0;text-align:center;color:var(--muted);font-weight:600}
-    .footer a{color:#ff6a00;text-decoration:none;font-weight:800}
+.key-text b{
+  color:var(--blue);
+}
 
-    @media (max-width:420px){
-      .title{font-size:20px}
-      .gallery-heading{font-size:26px}
-      .screenshot-list li{width:86%}
-      .gallery-scroll img{flex:0 0 86%}
-    }
-    @media (min-width:900px){
-      .container{padding:28px}
-      .hero{align-items:center}
-      .screenshot-list li{width:33%}
-      .gallery-scroll img{flex:0 0 32%}
-      .gallery-heading{font-size:36px}
-    }
-    .bottom-space{height:72px}
-  </style>
+.copy-btn{
+  background:var(--blue);
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  padding:6px 12px;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+/* Video guide button */
+.video-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin-top:18px;
+  cursor:pointer;
+}
+
+.video-icon{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff3b3b,#ff6a6a);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 26px rgba(255,59,59,.45);
+  animation:pulse 1.6s infinite;
+}
+
+.video-icon::before{
+  content:"▶";
+  color:#fff;
+  font-size:18px;
+  margin-left:2px;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+.video-text{
+  font-weight:800;
+  color:var(--red);
+  text-align:left;
+  line-height:1.2;
+}
+
+.video-sub{
+  font-size:13px;
+  color:var(--muted);
+  font-weight:600;
+}
+
+/* Preview */
+.preview-title{
+  margin:22px 0 12px;
+  font-size:20px;
+  font-weight:900;
+  color:var(--blue);
+}
+
+.preview img{
+  width:100%;
+  border-radius:16px;
+  margin-bottom:12px;
+  box-shadow:0 14px 36px rgba(0,0,0,.18);
+}
+
+/* Video modal */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.modal-box{
+  width:92%;
+  max-width:720px;
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+}
+
+.modal-header{
+  padding:12px 16px;
+  font-weight:900;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.close{
+  cursor:pointer;
+  color:#ff3b3b;
+  font-size:20px;
+}
+</style>
 </head>
+
 <body>
-  <header class="appbar">
-    <div class="appbar-inner">
-      <img class="appstore-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6dL0wcVnCQ3aUNsBz-4eCLYJH5QXXZY9KMQ&s" alt="App Store">
-      <span class="appbar-title">App Store</span>
-    </div>
-  </header>
+<div class="container">
+  <div class="card">
 
-  <main class="container">
-    <section class="hero" aria-label="Thông tin ứng dụng">
-      <div class="app-icon-wrap">
-        <img class="app-icon" src="https://play-lh.googleusercontent.com/29k6AAX1NYWPdnRmVm86NgvDlywy9o3TnNBJrbHWm3emdLB2dGrxdgc05f621I1kMVSph8U1igCpx3XTdS8blQ=w480-h960" alt="Icon">
-      </div>
+    <img class="app-icon"
+      src="https://play-lh.googleusercontent.com/29k6AAX1NYWPdnRmVm86NgvDlywy9o3TnNBJrbHWm3emdLB2dGrxdgc05f621I1kMVSph8U1igCpx3XTdS8blQ=w240-h240">
 
-      <div class="hero-right">
-        <div class="title-row">
-          <h1 class="title">Aov Mod 1.0</h1>
-          <div class="badge"></div>
-        </div>
+    <div class="app-name">AOV MOD</div>
+    <div class="app-desc">Miễn phí · Phiên bản mới</div>
 
-        <div class="developer"></div>
-        <div class="meta"><span>Miễn phí</span> · <span>26/01/2026</span></div>
-                <div class="actions">
-<a class="btn primary" href="itms-services://?action=download-manifest&url=https://tumadammod.github.io/autoup/manifest-1769348111909.plist">Cài Đặt</a>
-          <a class="btn ghost" href="https://github.com/TumadamMod/lqmmodskinvios1.0/releases/download/aovmod/YffSLVRv51hlim8s.ipa">Tải IPA</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section screenshots" aria-label="Screenshot">
-      <div class="section-head">
-        <h2>Xem Trước</h2>
-        <div class="platforms"><a class="active">iPhone</a></div>
-      </div>
-
-      <ul class="screenshot-list" role="list">
-        <li><img src="https://files.catbox.moe/r9f43m.png" alt="screenshot 1"></li>
-        <li><img src="https://files.catbox.moe/svjhel.png" alt="screenshot 2"></li>
-                                                                  </ul>
-    </section>
-<p class="lead-text muted-list">
-  <b>
-    Dùng Unlock Nhớ Né Các List Skin Sau 👉
-    <a href="https://tumadam.io.vn/autoup/note_list_skin" target="_blank">
-      https://tumadam.io.vn/autoup/note_list_skin
+    <a class="install-btn"
+       href="https://testflight.apple.com/join/ajn29AA3">
+       Tải Qua TestFlight
     </a>
-  </b>
-</p>
-    <section class="section gallery-instructions">
-      <div class="gallery-heading">Hướng Dẫn Tin Cậy</div>
-      <div class="gallery-scroll">
-        <img src="https://i.imgur.com/56TqnFh.png" alt="Hướng dẫn 1">
-        <img src="https://i.imgur.com/ZiXN2n7.png" alt="Hướng dẫn 2">
-        <img src="https://i.imgur.com/5KIIyuG.png" alt="Hướng dẫn 3">
+
+    <!-- Key -->
+    <div class="key-box">
+      <div class="key-text">
+        <b>Key 3 H K Cần Vượt Link</b><br>
+        Tặng bạn: <span id="key">tumadam-3h-3t45v7l2d9ycik</span>
       </div>
-    </section>
+      <button class="copy-btn" onclick="copyKey()">Copy</button>
+    </div>
 
-    <section class="section whats-new">
-      <h3 class="whats-new-title">Hướng Dẫn Sử Dụng</h3>
-      <div class="video-wrapper">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/Gs06zkAIotc" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    <!-- Video -->
+    <div class="video-btn" onclick="openVideo()">
+      <div class="video-icon"></div>
+      <div class="video-text">
+        Hướng dẫn cài app<br>
+        <span class="video-sub">Cài Qua TestFlight</span>
       </div>
-      <p class="lead-text muted-list">
-        Phiên bản 1.6.1<br>
-      </p>
-    </section>
+    </div>
 
-    <section class="section">
-      <h2>Quyền Riêng Tư Của Ứng Dụng</h2>
-      <p class="lead-text">Nhà phát triển, <strong>Tumadam Mod</strong>, đã cho biết rằng phương thức đảm bảo quyền riêng tư của ứng dụng có thể bao gồm việc xử lý dữ liệu như được mô tả ở bên dưới.</p>
-      <h3 style="margin-top:18px;font-weight:800">Thông Tin</h3>
-      <p class="muted-list"><strong>Nhà cung cấp</strong><br>Trương Văn Mẫn</p>
-      <p class="muted-list"><strong>Kích cỡ</strong><br>200 MB</p>
-      <p class="muted-list"><strong>Danh mục</strong><br>Trò chơi</p>
-    </section>
+    <div class="preview-title">Preview</div>
+    <div class="preview">
+      <img src="https://files.catbox.moe/fh9m2z.png">
+      <img src="https://files.catbox.moe/ixrkl4.png">
+    </div>
 
-    <footer class="footer">
-      <p>© 2026 <a href="https://tumadam.io.vn">Tumadam Mod</a>. All rights reserved.</p>
-    </footer>
-    <div class="bottom-space"></div>
-  </main>
+  </div>
+</div>
 
+<!-- Video Modal -->
+<div class="modal" id="videoModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span>Hướng dẫn cài app</span>
+      <span class="close" onclick="closeVideo()">✕</span>
+    </div>
+    <iframe width="100%" height="380"
+      src="https://www.youtube.com/embed/NcRUVBU8ODc"
+      allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+function openVideo(){
+  document.getElementById('videoModal').style.display='flex';
+}
+
+function closeVideo(){
+  const modal=document.getElementById('videoModal');
+  modal.style.display='none';
+  const iframe=modal.querySelector('iframe');
+  iframe.src=iframe.src;
+}
+
+function copyKey(){
+  const key=document.getElementById('key').innerText;
+  navigator.clipboard.writeText(key);
+  const btn=document.querySelector('.copy-btn');
+  btn.innerText='Đã copy';
+  setTimeout(()=>btn.innerText='Copy',1500);
+}
+</script>
 </body>
 </html>
