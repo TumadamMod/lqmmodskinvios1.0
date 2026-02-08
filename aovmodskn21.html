@@ -289,22 +289,26 @@ function startLoadingAndGo(url){
 }
 
 function installDirect(){
-  // Bắt đầu loading
-  modal.style.display='none';
+  // Đóng popup
+  modal.style.display = 'none';
+
+  // Bật loading trên nút chính
   installBtn.classList.add('loading');
 
-  // Scroll xuống phần hướng dẫn tin cậy
-  setTimeout(()=>{
-    const guideSection = document.getElementById("huongdan");
-    if(guideSection){
-      guideSection.scrollIntoView({ behavior: "smooth" });
-    }
-  }, 300);
+  // Mở link cài ngay
+  window.location.href = DIRECT_LINK;
 
-  // Sau 2s thì mở link cài
+  // Tự cuộn xuống phần hướng dẫn tin cậy
+  const guide = document.getElementById('huongdan');
+  if(guide){
+    setTimeout(()=>{
+      guide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 3000);
+  }
+
+  // Sau 2 giây thì tắt loading, về nút ban đầu
   setTimeout(()=>{
     installBtn.classList.remove('loading');
-    window.location.href = DIRECT_LINK;
   }, 2000);
 }
 
