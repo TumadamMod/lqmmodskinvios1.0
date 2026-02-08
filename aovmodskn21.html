@@ -4,256 +4,235 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>AovMod</title>
+
   <style>
-    :root{
-      --blue:#2d8cff;
-      --bg:#f6f7f9;
-      --muted:#6b7280;
-      --card:#fff;
-      --text:#0b1220;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
+:root{
+  --purple:#8b5cf6;
+  --pink:#ec4899;
+  --cyan:#22d3ee;
+  --bg:#05060a;
+  --card:#0c1020;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
 
-    .appbar{position:sticky;top:0;background:#fff;border-bottom:1px solid #e9e9e9;z-index:40;backdrop-filter:blur(6px)}
-    .appbar-inner{max-width:980px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
-    .appstore-icon{height:22px;opacity:.96}
-    .appbar-title{font-weight:700;font-size:18px}
-
-    .container{max-width:980px;margin:0 auto;padding:16px 16px 90px}
-
-    .hero{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
-    .app-icon-wrap{width:92px;height:92px;border-radius:22px;background:var(--card);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(12,24,48,0.06)}
-    .app-icon{width:86px;height:86px;border-radius:18px;object-fit:cover}
-    .hero-right{flex:1}
-    .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .title{font-size:22px;margin:0;font-weight:800}
-    .badge{background:#efefef;padding:4px 8px;border-radius:8px;font-size:12px;font-weight:700;color:#333}
-    .developer{color:var(--muted);margin:6px 0;font-weight:600}
-    .meta{color:var(--muted);margin-bottom:12px}
-
-    .actions{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:10px 18px;border-radius:22px;font-weight:800;text-align:center;cursor:pointer}
-    .btn.primary{background:var(--blue);color:#fff;box-shadow:0 6px 18px rgba(45,140,255,0.18)}
-    .btn.ghost{background:transparent;border:2px solid rgba(45,140,255,0.12);color:var(--blue)}
-
-    .section{background:transparent;padding:18px 0;border-top:1px solid #ececec}
-    .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .section-head h2{margin:0;font-size:18px;color:var(--text);font-weight:800}
-    .platforms a{margin-left:12px;color:var(--blue);font-weight:700}
-
-    .screenshot-list{display:flex;gap:14px;overflow-x:auto;padding:10px 2px 20px 2px;list-style:none;margin:0;-webkit-overflow-scrolling:touch}
-    .screenshot-list li{flex:0 0 auto;width:82%;max-width:640px}
-    .screenshot-list img{width:100%;height:auto;border-radius:16px;box-shadow:0 14px 36px rgba(14,22,40,0.12);display:block;object-fit:cover}
-
-    .gallery-heading{font-size:30px;line-height:1.04;text-align:center;color:var(--blue);font-weight:900;margin:22px 0 12px;text-shadow:0 8px 0 rgba(0,0,0,0.03),0 12px 22px rgba(45,140,255,0.12);padding:0 8px}
-
-    .gallery-scroll{display:flex;gap:12px;overflow-x:auto;padding:12px 6px 20px 6px;-webkit-overflow-scrolling:touch}
-    .gallery-scroll img{flex:0 0 82%;max-height:420px;width:auto;border-radius:14px;box-shadow:0 16px 40px rgba(10,20,40,0.12);object-fit:contain;background:#fff}
-
-    .whats-new{padding:6px 0 0 0}
-    .whats-new-title{font-weight:800;text-align:center;color:#203040;margin:8px 0 12px}
-    .demo-image{width:100%;border-radius:12px;border:1px solid #eee;box-shadow:0 12px 32px rgba(8,18,36,0.08);display:block}
-
-    .lead-text{color:var(--muted);line-height:1.6}
-    .muted-list{margin:8px 0 0 0;color:var(--muted);line-height:1.6}
-
-    .footer{padding:20px 0;text-align:center;color:var(--muted);font-weight:600}
-    .footer a{color:#ff6a00;text-decoration:none;font-weight:800}
-
-    @media (max-width:420px){
-      .title{font-size:20px}
-      .gallery-heading{font-size:26px}
-      .screenshot-list li{width:86%}
-      .gallery-scroll img{flex:0 0 86%}
-    }
-    @media (min-width:900px){
-      .container{padding:28px}
-      .hero{align-items:center}
-      .screenshot-list li{width:33%}
-      .gallery-scroll img{flex:0 0 32%}
-      .gallery-heading{font-size:36px}
-    }
-    .bottom-space{height:72px}
-    /* === Floating Guide Button === */
-.guide-btn{
-  position:fixed;
-  bottom:16px;
-  right:16px;
-  z-index:999;
-  background:linear-gradient(135deg,#2d8cff,#5aa8ff);
-  color:#fff;
-  padding:12px 18px;
-  border-radius:999px;
-  font-weight:800;
-  box-shadow:0 12px 30px rgba(45,140,255,.35);
-  display:flex;
-  align-items:center;
-  gap:10px;
-  cursor:pointer;
+  --glow-purple:0 0 25px rgba(139,92,246,.6);
+  --glow-pink:0 0 35px rgba(236,72,153,.4);
 }
 
-.guide-text{
-  white-space:nowrap;
-  overflow:hidden;
-  max-width:160px;
+*{box-sizing:border-box}
+html,body{
+  height:100%;
+  margin:0;
+  font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,Arial;
+  background:
+    radial-gradient(1200px 600px at 20% -10%,rgba(139,92,246,.18),transparent 40%),
+    radial-gradient(800px 400px at 90% 10%,rgba(34,211,238,.12),transparent 40%),
+    var(--bg);
+  color:var(--text);
+}
+a{color:inherit;text-decoration:none}
+
+/* Appbar */
+.appbar{
+  position:sticky;top:0;
+  background:rgba(12,16,32,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(139,92,246,.25);
+  z-index:40;
+}
+.appbar-inner{
+  max-width:980px;margin:0 auto;padding:12px 16px;
+  display:flex;align-items:center;gap:12px
+}
+.appstore-icon{height:22px;opacity:.9}
+.appbar-title{font-weight:800;font-size:18px}
+
+/* Layout */
+.container{max-width:980px;margin:0 auto;padding:16px 16px 90px}
+
+.card{
+  background:linear-gradient(180deg,#0f142c,#090c1b);
+  border-radius:18px;
+  padding:16px;
+  border:1px solid rgba(139,92,246,.25);
+  box-shadow:0 0 30px rgba(139,92,246,.15);
+  margin-bottom:18px;
 }
 
-.guide-text span{
-  display:inline-block;
-  animation:marquee 6s linear infinite;
+/* Hero */
+.hero{display:flex;gap:14px;align-items:flex-start}
+.app-icon-wrap{
+  width:92px;height:92px;border-radius:22px;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  padding:3px;
 }
-
-@keyframes marquee{
-  0%{transform:translateX(100%)}
-  100%{transform:translateX(-100%)}
+.app-icon{
+  width:100%;height:100%;border-radius:18px;object-fit:cover;
+  background:#000;
 }
+.hero-right{flex:1}
+.title{font-size:22px;margin:0;font-weight:900}
+.meta{color:var(--muted);margin:6px 0 12px}
 
-/* === Modal Video === */
-.video-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  display:none;
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  z-index:1000;
-}
-
-.video-box{
-  width:92%;
-  max-width:720px;
-  background:#fff;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 20px 60px rgba(0,0,0,.3);
-}
-
-.video-header{
-  padding:12px 16px;
-  font-weight:800;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.close-video{
-  font-size:20px;
+  padding:12px 26px;
+  min-width:140px;
+  border-radius:999px;
+  font-weight:900;
+  text-align:center;
   cursor:pointer;
-  color:#ff3b3b;
+  border:none;
 }
+.btn.primary{
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  box-shadow:var(--glow-purple),var(--glow-pink);
+  color:#fff;
+}
+.btn.ghost{
+  border:1px solid rgba(139,92,246,.4);
+  color:#c4b5fd;
+  background:transparent;
+}
+
+/* iOS loader */
+.install-circle{width:22px;height:22px;display:none}
+.install-circle svg{width:22px;height:22px;animation:spin 1s linear infinite}
+.install-circle circle{fill:none;stroke:rgba(255,255,255,.35);stroke-width:3}
+.install-circle .progress-ring{stroke:#fff;stroke-linecap:round;stroke-dasharray:40;stroke-dashoffset:20}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.btn.loading .install-circle{display:inline-block}
+.btn.loading #installText{display:none}
+
+/* Section */
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.section-head h2{margin:0;font-size:18px;font-weight:900;color:#c4b5fd;text-shadow:var(--glow-purple)}
+
+/* Screenshots */
+.screenshot-list{display:flex;gap:14px;overflow-x:auto;padding:6px 2px 10px;list-style:none;margin:0}
+.screenshot-list li{flex:0 0 auto;width:82%;max-width:640px}
+.screenshot-list img{width:100%;border-radius:14px;box-shadow:0 0 30px rgba(139,92,246,.25);display:block;object-fit:cover;background:#000}
+
+/* Gallery 9:16 */
+.gallery-heading{font-size:26px;text-align:center;color:#c4b5fd;font-weight:900;text-shadow:var(--glow-purple);margin:10px 0 14px}
+.gallery-scroll{display:flex;gap:12px;overflow-x:auto;padding:6px 2px 10px}
+.gallery-item{flex:0 0 70%;max-width:320px;aspect-ratio:9/16;border-radius:14px;overflow:hidden;box-shadow:0 0 30px rgba(236,72,153,.25);background:#000}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Text */
+.lead-text{color:var(--muted);line-height:1.6}
+.lead-text a{color:#38bdf8;font-weight:900;text-decoration:underline}
+
+/* Footer */
+.footer{padding:20px 0;text-align:center;color:var(--muted);font-weight:600}
+.footer a{color:#f472b6;font-weight:900}
+
+/* Floating Guide Button */
+.guide-btn{position:fixed;bottom:16px;right:16px;z-index:999;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;padding:12px 18px;border-radius:999px;font-weight:900;box-shadow:var(--glow-purple),var(--glow-pink);display:flex;align-items:center;gap:10px;cursor:pointer}
+.guide-text{white-space:nowrap;overflow:hidden;max-width:160px}
+.guide-text span{display:inline-block;animation:marquee 6s linear infinite}
+@keyframes marquee{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+
+/* Video Modal */
+.video-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:1000}
+.video-box{width:92%;max-width:720px;background:linear-gradient(180deg,#0f142c,#090c1b);border-radius:16px;overflow:hidden;border:1px solid rgba(139,92,246,.35);box-shadow:0 0 40px rgba(139,92,246,.4)}
+.video-header{padding:12px 16px;font-weight:900;display:flex;justify-content:space-between;align-items:center}
+.close-video{font-size:20px;cursor:pointer;color:#f472b6}
   </style>
 </head>
 <body>
-<!-- Floating Guide Button -->
-<div class="guide-btn" onclick="openVideo()">
-  ▶️
-  <div class="guide-text">
-    <span>Hướng dẫn cài app</span>
-  </div>
-</div>
 
-<!-- Video Modal -->
+<div class="guide-btn" onclick="openVideo()">▶️ <div class="guide-text"><span>Hướng dẫn cài app</span></div></div>
+
 <div class="video-modal" id="videoModal">
   <div class="video-box">
-    <div class="video-header">
-      <span>Hướng dẫn cài app</span>
-      <span class="close-video" onclick="closeVideo()">✕</span>
-    </div>
-    <iframe
-      width="100%"
-      height="380"
-      src="https://www.youtube.com/embed/Gs06zkAIotc"
-      frameborder="0"
-      allowfullscreen>
-    </iframe>
+    <div class="video-header"><span>Hướng dẫn cài app</span><span class="close-video" onclick="closeVideo()">✕</span></div>
+    <iframe width="100%" height="380" src="https://www.youtube.com/embed/Gs06zkAIotc" frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
-  <header class="appbar">
-    <div class="appbar-inner">
-      <img class="appstore-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6dL0wcVnCQ3aUNsBz-4eCLYJH5QXXZY9KMQ&s" alt="App Store">
-      <span class="appbar-title">App Store</span>
+
+<header class="appbar">
+  <div class="appbar-inner">
+    <img class="appstore-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6dL0wcVnCQ3aUNsBz-4eCLYJH5QXXZY9KMQ&s">
+    <span class="appbar-title">AppStore</span>
+  </div>
+</header>
+
+<main class="container">
+
+<div class="card hero">
+  <div class="app-icon-wrap"><img class="app-icon" src="https://play-lh.googleusercontent.com/29k6AAX1NYWPdnRmVm86NgvDlywy9o3TnNBJrbHWm3emdLB2dGrxdgc05f621I1kMVSph8U1igCpx3XTdS8blQ=w480-h960"></div>
+  <div class="hero-right">
+    <h1 class="title">Aov Mod 1.0</h1>
+    <div class="meta">Miễn phí · 01/02/2026</div>
+    <div class="actions">
+      <button class="btn primary" id="installBtn">
+        <span id="installText">Cài Đặt</span>
+        <span class="install-circle">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle class="progress-ring" cx="12" cy="12" r="10"></circle>
+          </svg>
+        </span>
+      </button>
+      <a class="btn ghost" href="https://github.com/TumadamMod/lqmmodskinvios1.0/releases/download/aovmod/aovmod.ipa">Tải IPA</a>
     </div>
-  </header>
+  </div>
+</div>
 
-  <main class="container">
-    <section class="hero" aria-label="Thông tin ứng dụng">
-      <div class="app-icon-wrap">
-        <img class="app-icon" src="https://play-lh.googleusercontent.com/29k6AAX1NYWPdnRmVm86NgvDlywy9o3TnNBJrbHWm3emdLB2dGrxdgc05f621I1kMVSph8U1igCpx3XTdS8blQ=w480-h960" alt="Icon">
-      </div>
+<div class="card">
+  <div class="section-head"><h2>Xem Trước</h2><div>iPhone</div></div>
+  <ul class="screenshot-list">
+    <li><img src="https://files.catbox.moe/fh9m2z.png"></li>
+    <li><img src="https://files.catbox.moe/ixrkl4.png"></li>
+  </ul>
+</div>
 
-      <div class="hero-right">
-        <div class="title-row">
-          <h1 class="title">Aov Mod 1.0</h1>
-          <div class="badge"></div>
-        </div>
+<div class="card">
+  <p class="lead-text"><b>Dùng Unlock Nhớ Né Các List Skin Ảo Sau 👉 <a href="https://tumadam.io.vn/autoup/note_list_skin" target="_blank">Xem tại đây</a></b></p>
+  <p class="lead-text"><b>-Update Antiban New</p></b>
+</div>
 
-        <div class="developer"></div>
-        <div class="meta"><span>Miễn phí</span> · <span>7/02/2026</span></div>
-                <div class="actions">
-<a class="btn primary" href="itms-services://?action=download-manifest&url=https://tumadammod.github.io/autoup/manifest-1769348111909.plist">Cài Đặt</a>
-          <a class="btn ghost" href="https://github.com/TumadamMod/lqmmodskinvios1.0/releases/download/aovmod/aovmod.ipa">Tải IPA</a>
-        </div>
-      </div>
-    </section>
+<div class="card">
+  <div class="gallery-heading">Hướng Dẫn Tin Cậy</div>
+  <div class="gallery-scroll">
+    <div class="gallery-item"><img src="https://i.imgur.com/56TqnFh.png"></div>
+    <div class="gallery-item"><img src="https://i.imgur.com/ZiXN2n7.png"></div>
+    <div class="gallery-item"><img src="https://i.imgur.com/5KIIyuG.png"></div>
+  </div>
+</div>
 
-    <section class="section screenshots" aria-label="Screenshot">
-      <div class="section-head">
-        <h2>Xem Trước</h2>
-        <div class="platforms"><a class="active">iPhone</a></div>
-      </div>
+<footer class="footer">
+  <p>© 2026 <a href="https://tumadam.io.vn">Tumadam Mod</a>. All rights reserved.</p>
+</footer>
 
-      <ul class="screenshot-list" role="list">
-        <li><img src="https://files.catbox.moe/fh9m2z.png" alt="screenshot 1"></li>
-        <li><img src="https://files.catbox.moe/ixrkl4.png" alt="screenshot 2"></li>
-                                                                  </ul>
-    </section>
-<p class="lead-text muted-list">
-  <b>
-    Dùng Unlock Nhớ Né Các List Skin Sau 👉
-    <a href="https://tumadam.io.vn/autoup/note_list_skin" target="_blank">
-      https://tumadam.io.vn/autoup/note_list_skin
-    </a>
-  </b>
-  <b>
-  -Chứng Chỉ Apple Đang Quét Khá Căng Ae Chơi Tạm Bản Cài Trực Tiếp Nhé.
-</p>
-    <section class="section gallery-instructions">
-      <div class="gallery-heading">Hướng Dẫn Cài App</div>
-      <div class="gallery-scroll">
-        <img src="https://i.imgur.com/56TqnFh.png" alt="Hướng dẫn 1">
-        <img src="https://i.imgur.com/ZiXN2n7.png" alt="Hướng dẫn 2">
-        <img src="https://i.imgur.com/5KIIyuG.png" alt="Hướng dẫn 3">
-      </div>
-    </section>
+</main>
 
-    <section class="section">
-      <h2>Quyền Riêng Tư Của Ứng Dụng</h2>
-      <p class="lead-text">Nhà phát triển, <strong>Tumadam Mod</strong>, đã cho biết rằng phương thức đảm bảo quyền riêng tư của ứng dụng có thể bao gồm việc xử lý dữ liệu như được mô tả ở bên dưới.</p>
-      <h3 style="margin-top:18px;font-weight:800">Thông Tin</h3>
-      <p class="muted-list"><strong>Nhà cung cấp</strong><br>Trương Văn Mẫn</p>
-      <p class="muted-list"><strong>Kích cỡ</strong><br>200 MB</p>
-      <p class="muted-list"><strong>Danh mục</strong><br>Trò chơi</p>
-    </section>
-
-    <footer class="footer">
-      <p>© 2026 <a href="https://tumadam.io.vn">Tumadam Mod</a>. All rights reserved.</p>
-    </footer>
-    <div class="bottom-space"></div>
-  </main>
 <script>
-function openVideo(){
-  document.getElementById('videoModal').style.display = 'flex';
+function openVideo(){ document.getElementById('videoModal').style.display='flex'; }
+function closeVideo(){
+  const modal=document.getElementById('videoModal');
+  modal.style.display='none';
+  const iframe=modal.querySelector('iframe'); iframe.src=iframe.src;
 }
 
-function closeVideo(){
-  const modal = document.getElementById('videoModal');
-  modal.style.display = 'none';
-  // reset video
-  const iframe = modal.querySelector('iframe');
-  iframe.src = iframe.src;
-}
+const INSTALL_LINK = "itms-services://?action=download-manifest&url=https://tumadammod.github.io/autoup/manifest-1769348111909.plist"; // link cài tt
+
+installBtn.addEventListener('click',()=>{
+  if(installBtn.classList.contains('loading')) return;
+
+  installBtn.classList.add('loading');
+
+  setTimeout(()=>{
+    installBtn.classList.remove('loading');
+    // mở link cài trực tiếp
+    window.location.href = INSTALL_LINK;
+  }, 2500);
+});
 </script>
+
 </body>
 </html>
